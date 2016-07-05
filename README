@@ -16,15 +16,27 @@ First of all copy the config_example.yml to config.yml in the same directory. Th
 
 Component name and secret MUST match the values in config.yml
 
+You now need to add the JID to email mappings
+
+email_addresses:
+    -jid:                   email address
+    name@im.jabber.com:     name@jabber.com
+
+If your JID does not exist in this list, then you will get no reply and no email will be sent
+
 Now restart both prosody and emailreminder
 
-$ sudo service restart emailremindercomponent
 $ sudo service restart prosody
+$ sudo service restart emailremindercomponent
 
 If you get problems set the logging_level in config.yml to debug, this will produce output from the script as well as smtplib.
 Check the log file at /var/log/prosody/emailremindercomponent.log
 
 Use
 
-Send message to jid set in config files. This will trigger send an email using the account in the config file to the mapped email address with the subject "Reminder <date" and the message. I use emails as reminders all the time and wanted to quicker way to send them. If your JID is setup in the email address mapping, you will get a reminder set / reminder failed confirmation message back. If no email mapping exists, no email or reply is sent.
+Send a standard XMPP message to the component_jid set in config.yml. This will send an email to the email address that is mapped against your JID in the config file.
+
+The subject, by default is set to "Reminder <date time>". I had to introduce the date and time so gmail doesn't group the reminders. The email body is a copy of the XMPP message body.
+
+I use emails as reminders all the time and wanted to quicker way to send them to a specific account. If your JID is setup in the email address mapping, you will get a reminder set / reminder failed confirmation message back. If no email mapping exists, no email or reply is sent.
 
