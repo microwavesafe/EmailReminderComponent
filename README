@@ -12,17 +12,17 @@ Setup
 
 First of all copy the config_example.yml to config.yml in the same directory. The example config is commented and should be easy to set up
 
-/etc/prosody/conf.d/emailreminder.cfg.lua
-
-Component name and secret MUST match the values in config.yml
-
-You now need to add the JID to email mappings
+Make sure you add your JID to email mappings. Add more lines for more users.
 
 email_addresses:
     -jid:                   email address
     name@im.jabber.com:     name@jabber.com
 
 If your JID does not exist in this list, then you will get no reply and no email will be sent
+
+/etc/prosody/conf.d/emailreminder.cfg.lua
+
+Component name and secret MUST match the values in config.yml
 
 Now restart both prosody and emailreminder
 
