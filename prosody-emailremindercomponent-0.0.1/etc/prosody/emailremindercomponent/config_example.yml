@@ -1,0 +1,18 @@
+component_jid: reminder@<your_domain>		        # this is the JID you will send messages to and must match the JID set in emailreminder.cfg.lua
+component_secret: thesecretmessageforxmppserver		# secret between server and component, must match setting in emailreminder.cfg.lua
+component_port: 5347					# default port, change this if you have a non default port set in prosody
+
+logging_level: quiet                                    # one of quiet, debug, verbose, info
+
+email_subject: Reminder                                 # change email subject, date and time is added to subject to prevent grouping in gmail
+
+email_addresses:                                        # Set up JID to email address mappings (match JID to email to address)
+    -jid:                   email_address
+    -me@im.example.com:     me@example.com
+
+smtp_server: smtp.gmail.com                             # presumes gmail sending account, change as necessary
+smtp_port: 587                                          # change as necessary
+smtp_user: <gmail username>                             # username of gmail account, I recomment setting up a send only account as you have to put the password in plain text here
+smtp_pass: <gmail password>                             # password of gmail account
+
+

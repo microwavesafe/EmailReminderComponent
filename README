@@ -1,0 +1,30 @@
+Simple Python script to send reminder emails from XMPP
+
+Build
+
+To build debian package run
+
+$ dpkg-deb --build prosody-emailremindercomponent-0.0.1/
+
+Setup
+
+/etc/prosody/emailreminder/config.yml
+
+First of all copy the config_example.yml to config.yml in the same directory. The example config is commented and should be easy to set up
+
+/etc/prosody/conf.d/emailreminder.cfg.lua
+
+Component name and secret MUST match the values in config.yml
+
+Now restart both prosody and emailreminder
+
+$ sudo service restart emailremindercomponent
+$ sudo service restart prosody
+
+If you get problems set the logging_level in config.yml to debug, this will produce output from the script as well as smtplib.
+Check the log file at /var/log/prosody/emailremindercomponent.log
+
+Use
+
+Send message to jid set in config files. This will trigger send an email using the account in the config file to the mapped email address with the subject "Reminder <date" and the message. I use emails as reminders all the time and wanted to quicker way to send them. If your JID is setup in the email address mapping, you will get a reminder set / reminder failed confirmation message back. If no email mapping exists, no email or reply is sent.
+
